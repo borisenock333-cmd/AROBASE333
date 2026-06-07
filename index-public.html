@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="AROBASE333 — Développeur, créateur et penseur basé en Côte d'Ivoire. Je construis, je réfléchis, je rêve."/>
+<meta property="og:title" content="AROBASE333"/>
+<meta property="og:description" content="Développeur, créateur et penseur basé en Côte d'Ivoire."/>
+<meta property="og:type" content="website"/>
+<title>AROBASE333</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #07101f;
+  --bg2:       #0a1628;
+  --surface:   #0f1e36;
+  --border:    #162840;
+  --border2:   #1e3450;
+  --text:      #bdd0ea;
+  --muted:     #3d5a7a;
+  --soft:      #7aaad4;
+  --accent:    #5b9fd4;
+  --accent-bg: rgba(91,159,212,.08);
+  --white:     #e8f0fa;
+  --gold:      #c9a84c;
+  --sidebar-w: 200px;
+  --serif:     'Cormorant Garamond', Georgia, serif;
+  --sans:      'DM Sans', sans-serif;
+  --mono:      'IBM Plex Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.7; overflow: hidden; height: 100vh; }
+
+/* ═══════════════════════════════════════════════════════════
+   BACKGROUND — CIEL ÉTOILÉ
+═══════════════════════════════════════════════════════════ */
+.sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% -5%, rgba(91,159,212,.12) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 90%, rgba(91,159,212,.06) 0%, transparent 50%);
+}
+
+.stars {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 8%  12%, rgba(200,220,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 22% 6%,  rgba(200,220,255,.4) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 9%,  rgba(200,220,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 58% 4%,  rgba(200,220,255,.35) 0%,transparent 100%),
+    radial-gradient(1px 1px at 73% 11%, rgba(200,220,255,.45) 0%,transparent 100%),
+    radial-gradient(1px 1px at 88% 7%,  rgba(200,220,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 15% 35%, rgba(200,220,255,.2) 0%,transparent 100%),
+    radial-gradient(1px 1px at 35% 28%, rgba(200,220,255,.25) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 62% 22%, rgba(200,220,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 80% 30%, rgba(200,220,255,.2) 0%,transparent 100%),
+    radial-gradient(1px 1px at 92% 42%, rgba(200,220,255,.25) 0%,transparent 100%),
+    radial-gradient(1px 1px at 5%  60%, rgba(200,220,255,.15) 0%,transparent 100%),
+    radial-gradient(1px 1px at 28% 55%, rgba(200,220,255,.2) 0%,transparent 100%),
+    radial-gradient(1px 1px at 50% 48%, rgba(200,220,255,.15) 0%,transparent 100%),
+    radial-gradient(1px 1px at 75% 52%, rgba(200,220,255,.2) 0%,transparent 100%);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════════════ */
+.layout { display: flex; height: 100vh; position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════════════════ */
+.sidebar {
+  width: var(--sidebar-w);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 32px 0;
+  border-right: 1px solid var(--border);
+  background: rgba(10,22,40,.6);
+  backdrop-filter: blur(12px);
+  position: relative;
+  z-index: 20;
+}
+
+.sidebar-top {
+  padding: 0 24px 32px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+
+.sidebar-name {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: .08em;
+}
+
+.sidebar-title {
+  font-family: var(--serif);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Nav */
+.sidebar-nav {
+  flex: 1;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+
+/* Indicator line */
+.nav-indicator {
+  position: absolute;
+  left: 0;
+  width: 2px;
+  background: var(--accent);
+  border-radius: 0 2px 2px 0;
+  transition: top .35s cubic-bezier(.4,0,.2,1), height .35s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .2s;
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+
+.nav-btn:hover { color: var(--text); background: var(--accent-bg); }
+
+.nav-btn.active { color: var(--accent); background: var(--accent-bg); }
+
+.nav-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  transition: color .2s;
+  width: 16px;
+  flex-shrink: 0;
+}
+
+.nav-btn.active .nav-num { color: var(--accent); }
+
+/* Sidebar footer */
+.sidebar-footer {
+  padding: 28px 24px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 28px;
+}
+
+.sidebar-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.status-dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+.sidebar-location {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.sidebar-location strong { color: var(--text); font-weight: 400; }
+
+/* ═══════════════════════════════════════════════════════════
+   MAIN CONTENT
+═══════════════════════════════════════════════════════════ */
+.main {
+  flex: 1;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VIEWS
+═══════════════════════════════════════════════════════════ */
+.view {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  padding: 60px 72px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .4s ease, transform .4s ease;
+  pointer-events: none;
+}
+
+.view.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* ─── VIEW : ACCUEIL ─── */
+.hero-wrap {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: up .7s .1s forwards;
+}
+
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(64px, 8vw, 112px);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -.02em;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: up .7s .25s forwards;
+}
+
+.hero-phrase {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--soft);
+  max-width: 560px;
+  line-height: 1.55;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: up .7s .4s forwards;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: up .7s .55s forwards;
+}
+
+.tag {
+  padding: 5px 14px;
+  border: 1px solid var(--border2);
+  border-radius: 99px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  transition: all .2s;
+}
+
+.tag:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  opacity: 0;
+  animation: up .7s .7s forwards;
+}
+
+.btn-main {
+  padding: 12px 28px;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 7px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.btn-main:hover { background: #72b8e8; transform: translateY(-1px); }
+
+.btn-ghost {
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--soft);
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.btn-ghost:hover { border-color: var(--soft); color: var(--white); }
+
+@keyframes up { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* ─── SECTION HEADER ─── */
+.sec-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.sec-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 36px;
+}
+
+.sec-title em { font-style: italic; color: var(--soft); }
+
+.sec-lead {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.85;
+  max-width: 640px;
+  margin-bottom: 20px;
+}
+
+.sec-lead strong { color: var(--white); font-weight: 500; }
+
+/* ─── IDENTITÉ ─── */
+.identity-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.id-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  transition: border-color .2s, transform .2s;
+}
+
+.id-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+.id-card-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.id-card-value {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--white);
+  line-height: 1.4;
+}
+
+/* ─── PASSIONS ─── */
+.passions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.passion-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 20px;
+  transition: all .25s;
+  cursor: default;
+}
+
+.passion-card:hover {
+  border-color: rgba(91,159,212,.4);
+  background: rgba(15,30,54,.9);
+  transform: translateY(-3px);
+}
+
+.passion-card:hover .passion-icon { filter: none; }
+
+.passion-icon { font-size: 32px; margin-bottom: 14px; display: block; filter: grayscale(.5) brightness(.8); transition: filter .25s; }
+
+.passion-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.passion-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ─── COMPÉTENCES ─── */
+.skills-list { display: flex; flex-direction: column; gap: 28px; margin-top: 8px; max-width: 640px; }
+
+.skill-item {}
+
+.skill-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.skill-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--white);
+}
+
+.skill-pct {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.skill-track {
+  height: 2px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--muted), var(--accent));
+  border-radius: 99px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+
+.skill-desc { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
+
+/* ─── CRÉATIONS ─── */
+.creations-list { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+
+.creation-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 26px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: all .2s;
+}
+
+.creation-card:hover { border-color: rgba(91,159,212,.3); transform: translateX(4px); }
+
+.creation-num {
+  font-family: var(--mono);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--border2);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.creation-body {}
+
+.creation-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.creation-desc { font-size: 14px; color: var(--text); line-height: 1.65; margin-bottom: 10px; }
+
+.creation-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  background: var(--accent-bg);
+  border: 1px solid rgba(91,159,212,.15);
+  border-radius: 99px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--soft);
+  letter-spacing: .06em;
+}
+
+/* ─── RÊVES ─── */
+.dreams-intro { max-width: 600px; margin-bottom: 48px; }
+
+.dreams-list { display: flex; flex-direction: column; }
+
+.dream-item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left .2s;
+}
+
+.dream-item:hover { padding-left: 8px; }
+.dream-item:last-child { border-bottom: none; }
+
+.dream-line {
+  width: 1px;
+  min-height: 100%;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  opacity: .3;
+  flex-shrink: 0;
+  margin-top: 6px;
+  align-self: stretch;
+}
+
+.dream-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+  flex-shrink: 0;
+  width: 20px;
+}
+
+.dream-text {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+/* ─── CONTACT ─── */
+.contact-wrap {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-big {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.contact-big em { color: var(--soft); font-style: italic; }
+
+.contact-sub {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 480px;
+  margin-bottom: 48px;
+  line-height: 1.7;
+}
+
+.contact-items { display: flex; flex-direction: column; gap: 14px; max-width: 480px; }
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.contact-item:hover { border-color: rgba(91,159,212,.3); transform: translateX(4px); }
+
+.contact-item-icon { font-size: 20px; width: 28px; text-align: center; }
+
+.contact-item-info { flex: 1; }
+
+.contact-item-label { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+.contact-item-value { font-size: 14px; color: var(--text); margin-top: 2px; }
+
+.contact-item-arrow { color: var(--muted); font-size: 16px; }
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE — Hamburger + Bottom sheet
+═══════════════════════════════════════════════════════════ */
+.mob-bar {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  background: rgba(10,22,40,.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 100;
+}
+
+.mob-logo { font-family: var(--mono); font-size: 13px; color: var(--white); }
+
+.mob-menu-btn {
+  background: none; border: none;
+  color: var(--text); font-size: 20px;
+  cursor: pointer; padding: 4px;
+}
+
+.mob-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(7,16,31,.97);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mob-nav.open { display: flex; }
+
+.mob-nav-btn {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--muted);
+  background: none; border: none;
+  cursor: pointer;
+  padding: 10px 32px;
+  transition: color .2s;
+  width: 100%;
+  text-align: center;
+}
+
+.mob-nav-btn:hover, .mob-nav-btn.active { color: var(--white); }
+
+.mob-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: none; border: none;
+  color: var(--muted); font-size: 28px;
+  cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .passions-grid { grid-template-columns: repeat(2,1fr); }
+  .identity-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+  .sidebar { display: none; }
+  .mob-bar { display: flex; }
+  .view { padding: 72px 24px 32px; }
+  .passions-grid { grid-template-columns: 1fr 1fr; }
+  .hero-name { font-size: clamp(48px, 12vw, 72px); }
+  .creation-card { flex-direction: column; gap: 8px; }
+}
+
+@media (max-width: 480px) {
+  .passions-grid { grid-template-columns: 1fr; }
+  .hero-cta { flex-direction: column; }
+  .btn-main, .btn-ghost { width: 100%; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="sky"></div>
+<div class="stars"></div>
+
+<!-- Mobile bar -->
+<div class="mob-bar">
+  <span class="mob-logo">AROBASE333</span>
+  <button class="mob-menu-btn" onclick="openMob()">☰</button>
+</div>
+
+<!-- Mobile nav -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <button class="mob-nav-btn active" onclick="go('accueil');closeMob()">Accueil</button>
+  <button class="mob-nav-btn" onclick="go('identite');closeMob()">Identité</button>
+  <button class="mob-nav-btn" onclick="go('passions');closeMob()">Passions</button>
+  <button class="mob-nav-btn" onclick="go('competences');closeMob()">Compétences</button>
+  <button class="mob-nav-btn" onclick="go('creations');closeMob()">Créations</button>
+  <button class="mob-nav-btn" onclick="go('reves');closeMob()">Rêves</button>
+  <button class="mob-nav-btn" onclick="go('contact');closeMob()">Contact</button>
+</div>
+
+<div class="layout">
+
+  <!-- ══════════════ SIDEBAR ══════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-name">AROBASE333</div>
+      <div class="sidebar-title">Développeur & Créateur</div>
+    </div>
+
+    <nav class="sidebar-nav" id="sideNav">
+      <div class="nav-indicator" id="navIndicator"></div>
+
+      <button class="nav-btn active" data-view="accueil" onclick="go('accueil')">
+        <span class="nav-num">00</span>Accueil
+      </button>
+      <button class="nav-btn" data-view="identite" onclick="go('identite')">
+        <span class="nav-num">01</span>Identité
+      </button>
+      <button class="nav-btn" data-view="passions" onclick="go('passions')">
+        <span class="nav-num">02</span>Passions
+      </button>
+      <button class="nav-btn" data-view="competences" onclick="go('competences')">
+        <span class="nav-num">03</span>Compétences
+      </button>
+      <button class="nav-btn" data-view="creations" onclick="go('creations')">
+        <span class="nav-num">04</span>Créations
+      </button>
+      <button class="nav-btn" data-view="reves" onclick="go('reves')">
+        <span class="nav-num">05</span>Rêves
+      </button>
+      <button class="nav-btn" data-view="contact" onclick="go('contact')">
+        <span class="nav-num">06</span>Contact
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-status">
+        <div class="status-dot"></div>
+        Disponible pour collaborer
+      </div>
+      <div class="sidebar-location">
+        Basé à<br/>
+        <strong>Côte d'Ivoire, Afrique</strong>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══════════════ MAIN ══════════════ -->
+  <main class="main">
+
+    <!-- ── ACCUEIL ── -->
+    <div class="view active" id="view-accueil">
+      <div class="hero-wrap">
+        <p class="hero-eyebrow">Bienvenue dans mon univers</p>
+        <h1 class="hero-name">AROBASE<br/>333</h1>
+        <p class="hero-phrase">Je construis, je réfléchis, je rêve — et je te montre pourquoi tout ça me fascine.</p>
+        <div class="hero-tags">
+          <span class="tag">Développeur</span>
+          <span class="tag">Créateur</span>
+          <span class="tag">Penseur</span>
+          <span class="tag">Côte d'Ivoire</span>
+          <span class="tag">Afrique</span>
+        </div>
+        <div class="hero-cta">
+          <button class="btn-main" onclick="go('creations')">Voir mes créations</button>
+          <button class="btn-ghost" onclick="go('contact')">Me contacter</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── IDENTITÉ ── -->
+    <div class="view" id="view-identite">
+      <p class="sec-label">01 — Identité</p>
+      <h2 class="sec-title">Qui je suis,<br/><em>sans filtre</em></h2>
+
+      <p class="sec-lead">
+        Je suis quelqu'un qui observe le monde avec curiosité et qui refuse de rester en surface.
+        Développeur, créateur, penseur — ces mots me décrivent en partie, mais ce qui me définit
+        vraiment c'est cette <strong>fascination profonde pour les systèmes</strong>, les idées,
+        et les connexions invisibles entre les choses.
+      </p>
+      <p class="sec-lead">
+        Je vis en <strong>Côte d'Ivoire</strong> et je construis depuis ici — pas malgré ça, mais avec ça.
+        Mon environnement, ma culture, mes contradictions font partie de ce que je crée.
+      </p>
+      <p class="sec-lead" style="color:var(--muted)">
+        Ce site n'est pas un CV. C'est un espace vivant. Il évolue comme moi.
+      </p>
+
+      <div class="identity-grid">
+        <div class="id-card">
+          <div class="id-card-label">Localisation</div>
+          <div class="id-card-value">Côte d'Ivoire<br/>Afrique de l'Ouest</div>
+        </div>
+        <div class="id-card">
+          <div class="id-card-label">Orientation</div>
+          <div class="id-card-value">Systèmes, long terme,<br/>impact structurel</div>
+        </div>
+        <div class="id-card">
+          <div class="id-card-label">Approche</div>
+          <div class="id-card-value">Construire l'axe<br/>avant de couper le bois</div>
+        </div>
+        <div class="id-card">
+          <div class="id-card-label">Philosophie</div>
+          <div class="id-card-value">Cohérence entre<br/>ce qu'on pense, dit et fait</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PASSIONS ── -->
+    <div class="view" id="view-passions">
+      <p class="sec-label">02 — Passions</p>
+      <h2 class="sec-title">Ce qui fait<br/><em>battre mon cœur</em></h2>
+      <p class="sec-lead" style="margin-bottom:36px">
+        Mes passions ne sont pas des hobbies. Ce sont des <strong>lentilles</strong> à travers lesquelles je vois le monde.
+      </p>
+
+      <div class="passions-grid">
+        <div class="passion-card">
+          <span class="passion-icon">💻</span>
+          <p class="passion-name">Code</p>
+          <p class="passion-desc">Construire des choses à partir de rien. Chaque ligne est une décision, chaque projet une architecture de pensée.</p>
+        </div>
+        <div class="passion-card">
+          <span class="passion-icon">🌍</span>
+          <p class="passion-name">Géopolitique</p>
+          <p class="passion-desc">Comprendre les forces qui façonnent le monde — et particulièrement ce qu'elles signifient pour l'Afrique.</p>
+        </div>
+        <div class="passion-card">
+          <span class="passion-icon">🧠</span>
+          <p class="passion-name">Philosophie</p>
+          <p class="passion-desc">Les grandes questions sans réponses faciles m'habitent constamment. La vérité est rarement là où on la cherche.</p>
+        </div>
+        <div class="passion-card">
+          <span class="passion-icon">📖</span>
+          <p class="passion-name">Économie</p>
+          <p class="passion-desc">Les systèmes économiques comme miroir des sociétés humaines. La monnaie, le pouvoir, la souveraineté.</p>
+        </div>
+        <div class="passion-card">
+          <span class="passion-icon">🎨</span>
+          <p class="passion-name">Création</p>
+          <p class="passion-desc">Transformer une idée abstraite en quelque chose de tangible, d'utile, de beau — ou les trois à la fois.</p>
+        </div>
+        <div class="passion-card">
+          <span class="passion-icon">🔭</span>
+          <p class="passion-name">Futur</p>
+          <p class="passion-desc">Anticiper, imaginer, construire ce qui n'existe pas encore. Surtout pour ceux qu'on oublie trop souvent.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COMPÉTENCES ── -->
+    <div class="view" id="view-competences">
+      <p class="sec-label">03 — Compétences</p>
+      <h2 class="sec-title">Ce que je<br/><em>sais faire</em></h2>
+      <p class="sec-lead" style="margin-bottom:48px">
+        Des outils au service d'idées. Pas l'inverse.
+      </p>
+
+      <div class="skills-list" id="skillsList">
+        <div class="skill-item" data-pct="85">
+          <div class="skill-head">
+            <span class="skill-name">Développement Web</span>
+            <span class="skill-pct">HTML · CSS · JavaScript</span>
+          </div>
+          <div class="skill-track"><div class="skill-fill"></div></div>
+          <p class="skill-desc">Interfaces, SPA, outils métier. Du prototype à la production.</p>
+        </div>
+        <div class="skill-item" data-pct="80">
+          <div class="skill-head">
+            <span class="skill-name">Extensions Firefox</span>
+            <span class="skill-pct">WebExtensions API</span>
+          </div>
+          <div class="skill-track"><div class="skill-fill"></div></div>
+          <p class="skill-desc">Filtrage de contenu, sécurité, UX navigateur. Modèle freemium.</p>
+        </div>
+        <div class="skill-item" data-pct="70">
+          <div class="skill-head">
+            <span class="skill-name">Développement Android</span>
+            <span class="skill-pct">Java · Android SDK</span>
+          </div>
+          <div class="skill-track"><div class="skill-fill"></div></div>
+          <p class="skill-desc">Applications mobiles natives pour le marché africain.</p>
+        </div>
+        <div class="skill-item" data-pct="75">
+          <div class="skill-head">
+            <span class="skill-name">Création de contenu</span>
+            <span class="skill-pct">Stratégie · Édito · Distribution</span>
+          </div>
+          <div class="skill-track"><div class="skill-fill"></div></div>
+          <p class="skill-desc">Marque NexaMind — contenu francophone pour audiences africaines.</p>
+        </div>
+        <div class="skill-item" data-pct="90">
+          <div class="skill-head">
+            <span class="skill-name">Pensée systémique</span>
+            <span class="skill-pct">Analyse · Stratégie · Architecture</span>
+          </div>
+          <div class="skill-track"><div class="skill-fill"></div></div>
+          <p class="skill-desc">Construire des modèles, anticiper les effets de second ordre, relier les points.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CRÉATIONS ── -->
+    <div class="view" id="view-creations">
+      <p class="sec-label">04 — Créations</p>
+      <h2 class="sec-title">Ce que j'ai<br/><em>mis au monde</em></h2>
+
+      <div class="creations-list">
+        <div class="creation-card">
+          <span class="creation-num">01</span>
+          <div class="creation-body">
+            <p class="creation-name">NexaMind</p>
+            <p class="creation-desc">Marque de contenu digital francophone à destination des audiences africaines. Éducation, technologie, souveraineté économique. Un écosystème complet construit sans apparaître à la caméra.</p>
+            <span class="creation-tag">Contenu · Éducation · Afrique</span>
+          </div>
+        </div>
+        <div class="creation-card">
+          <span class="creation-num">02</span>
+          <div class="creation-body">
+            <p class="creation-name">NexusGuard Pro</p>
+            <p class="creation-desc">Extension Firefox de protection et filtrage de contenu. Architecture réseau avancée, scoring DOM en temps réel. Modèle freemium pensé pour le marché ivoirien.</p>
+            <span class="creation-tag">Firefox · Sécurité · Freemium</span>
+          </div>
+        </div>
+        <div class="creation-card">
+          <span class="creation-num">03</span>
+          <div class="creation-body">
+            <p class="creation-name">Nexus Void</p>
+            <p class="creation-desc">Jeu de tir cyberpunk néon — asteroid shooter disponible en React et HTML standalone. Preuve que créer peut aussi être jouer.</p>
+            <span class="creation-tag">Jeu · Web · React</span>
+          </div>
+        </div>
+        <div class="creation-card">
+          <span class="creation-num">04</span>
+          <div class="creation-body">
+            <p class="creation-name">Modèle de Capital Souverain</p>
+            <p class="creation-desc">Framework de politique économique pour la Côte d'Ivoire — comptes d'investissement à la naissance, fonds de solidarité, entreprises d'État, souveraineté financière. Un projet de civilisation.</p>
+            <span class="creation-tag">Économie · Politique · Souveraineté</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RÊVES ── -->
+    <div class="view" id="view-reves">
+      <p class="sec-label">05 — Rêves</p>
+      <h2 class="sec-title">Ce que je<br/><em>veux bâtir</em></h2>
+
+      <div class="dreams-intro">
+        <p class="sec-lead">
+          Pas des vœux pieux. Des <strong>directions</strong>. Des étoiles à suivre quand le chemin n'est pas encore tracé.
+        </p>
+      </div>
+
+      <div class="dreams-list">
+        <div class="dream-item">
+          <div class="dream-num">01</div>
+          <div class="dream-line"></div>
+          <p class="dream-text">Contribuer à l'émergence d'une Afrique économiquement souveraine et technologiquement autonome.</p>
+        </div>
+        <div class="dream-item">
+          <div class="dream-num">02</div>
+          <div class="dream-line"></div>
+          <p class="dream-text">Construire des outils qui donnent du pouvoir aux gens ordinaires — pas aux institutions.</p>
+        </div>
+        <div class="dream-item">
+          <div class="dream-num">03</div>
+          <div class="dream-line"></div>
+          <p class="dream-text">Créer quelque chose qui dure au-delà de moi. Une idée, un système, une œuvre.</p>
+        </div>
+        <div class="dream-item">
+          <div class="dream-num">04</div>
+          <div class="dream-line"></div>
+          <p class="dream-text">Vivre avec cohérence — que ce que je pense, dis et fais soit la même chose.</p>
+        </div>
+        <div class="dream-item">
+          <div class="dream-num">05</div>
+          <div class="dream-line"></div>
+          <p class="dream-text">Trouver la paix dans la complexité. Rester calme face à l'immensité de ce qu'il reste à comprendre.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CONTACT ── -->
+    <div class="view" id="view-contact">
+      <div class="contact-wrap">
+        <p class="sec-label">06 — Contact</p>
+        <h2 class="contact-big">Parlons-<em>nous</em></h2>
+        <p class="contact-sub">
+          Une idée à partager, une collaboration à explorer, une question qui n'a pas de réponse facile.
+          Je lis tout ce qu'on m'envoie.
+        </p>
+        <div class="contact-items">
+          <a class="contact-item" href="https://github.com/borisenock333-cmd" target="_blank">
+            <span class="contact-item-icon">🐙</span>
+            <div class="contact-item-info">
+              <div class="contact-item-label">GitHub</div>
+              <div class="contact-item-value">borisenock333-cmd</div>
+            </div>
+            <span class="contact-item-arrow">→</span>
+          </a>
+          <div class="contact-item" style="cursor:default">
+            <span class="contact-item-icon">📍</span>
+            <div class="contact-item-info">
+              <div class="contact-item-label">Localisation</div>
+              <div class="contact-item-value">Côte d'Ivoire, Afrique de l'Ouest</div>
+            </div>
+          </div>
+          <div class="contact-item" style="cursor:default;opacity:.5">
+            <span class="contact-item-icon">✉️</span>
+            <div class="contact-item-info">
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value" style="color:var(--muted)">Formulaire de contact — bientôt disponible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ── Navigation ────────────────────────────────────────────────
+const views   = ['accueil','identite','passions','competences','creations','reves','contact'];
+let current   = 'accueil';
+let skillsAnimated = false;
+
+function go(name) {
+  if (!views.includes(name)) return;
+
+  // Deactivate current
+  document.getElementById('view-' + current).classList.remove('active');
+  document.querySelector(`[data-view="${current}"]`)?.classList.remove('active');
+
+  // Activate new
+  current = name;
+  document.getElementById('view-' + current).classList.add('active');
+  document.querySelector(`[data-view="${current}"]`)?.classList.add('active');
+
+  // Update mobile nav
+  document.querySelectorAll('.mob-nav-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'') === name);
+  });
+
+  // Move indicator
+  moveIndicator();
+
+  // Animate skills on first visit
+  if (name === 'competences' && !skillsAnimated) {
+    skillsAnimated = true;
+    setTimeout(animateSkills, 200);
+  }
+
+  // Scroll to top
+  document.getElementById('view-' + name).scrollTop = 0;
+}
+
+// ── Nav indicator ─────────────────────────────────────────────
+function moveIndicator() {
+  const active = document.querySelector('.nav-btn.active');
+  const nav    = document.getElementById('sideNav');
+  const ind    = document.getElementById('navIndicator');
+  if (!active || !nav || !ind) return;
+  const navRect    = nav.getBoundingClientRect();
+  const btnRect    = active.getBoundingClientRect();
+  ind.style.top    = (btnRect.top - navRect.top) + 'px';
+  ind.style.height = btnRect.height + 'px';
+}
+
+// ── Skills animation ──────────────────────────────────────────
+function animateSkills() {
+  document.querySelectorAll('.skill-item').forEach((item, i) => {
+    const pct  = parseInt(item.dataset.pct);
+    const fill = item.querySelector('.skill-fill');
+    setTimeout(() => { fill.style.width = pct + '%'; }, i * 150);
+  });
+}
+
+// ── Mobile ────────────────────────────────────────────────────
+function openMob()  { document.getElementById('mobNav').classList.add('open'); }
+function closeMob() { document.getElementById('mobNav').classList.remove('open'); }
+
+// ── Init ──────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  moveIndicator();
+});
+
+window.addEventListener('resize', moveIndicator);
+</script>
+</body>
+</html>
